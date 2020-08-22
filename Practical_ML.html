@@ -369,6 +369,9 @@ summary {
 </div>
 
 
+<div id="link-to-github-repo-httpsgithub.comlenweikencourserapractical_ml_new" class="section level3">
+<h3>Link to github repo: <a href="https://github.com/lenweiken/courserapractical_ML_new" class="uri">https://github.com/lenweiken/courserapractical_ML_new</a></h3>
+</div>
 <div id="the-objective-as-stated-in-the-instructions-of-this-project-assignment-is-to-predict-the-manner-in-which-this-exercise-is-carried-out-classe-variable-in-the-training-set.-after-training-the-model-to-predict-the-classe-variable-the-prediction-model-will-be-applied-onto-the-testing-dataset." class="section level3">
 <h3>The objective, as stated in the instructions of this project assignment, is to predict the manner in which this exercise is carried out (“classe” variable) in the training set. After training the model to predict the classe variable, the prediction model will be applied onto the testing dataset.</h3>
 </div>
@@ -511,34 +514,34 @@ confusionMatrix(predict_rf, validation$classe)</code></pre>
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1395    5    0    0    0
-##          B    0  944    5    0    0
-##          C    0    0  848    5    1
-##          D    0    0    2  799    6
-##          E    0    0    0    0  894
+##          A 1395    1    0    0    0
+##          B    0  948    2    0    0
+##          C    0    0  852    2    1
+##          D    0    0    1  802    2
+##          E    0    0    0    0  898
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.9951          
-##                  95% CI : (0.9927, 0.9969)
+##                Accuracy : 0.9982          
+##                  95% CI : (0.9965, 0.9992)
 ##     No Information Rate : 0.2845          
 ##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
 ##                                           
-##                   Kappa : 0.9938          
+##                   Kappa : 0.9977          
 ##                                           
 ##  Mcnemar&#39;s Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            1.0000   0.9947   0.9918   0.9938   0.9922
-## Specificity            0.9986   0.9987   0.9985   0.9980   1.0000
-## Pos Pred Value         0.9964   0.9947   0.9930   0.9901   1.0000
-## Neg Pred Value         1.0000   0.9987   0.9983   0.9988   0.9983
+## Sensitivity            1.0000   0.9989   0.9965   0.9975   0.9967
+## Specificity            0.9997   0.9995   0.9993   0.9993   1.0000
+## Pos Pred Value         0.9993   0.9979   0.9965   0.9963   1.0000
+## Neg Pred Value         1.0000   0.9997   0.9993   0.9995   0.9993
 ## Prevalence             0.2845   0.1935   0.1743   0.1639   0.1837
-## Detection Rate         0.2845   0.1925   0.1729   0.1629   0.1823
-## Detection Prevalence   0.2855   0.1935   0.1741   0.1646   0.1823
-## Balanced Accuracy      0.9993   0.9967   0.9952   0.9959   0.9961</code></pre>
+## Detection Rate         0.2845   0.1933   0.1737   0.1635   0.1831
+## Detection Prevalence   0.2847   0.1937   0.1743   0.1642   0.1831
+## Balanced Accuracy      0.9999   0.9992   0.9979   0.9984   0.9983</code></pre>
 </div>
 </div>
 <div id="step-5.-here-we-can-see-the-results-of-the-prediction-model-which-will-be-used-in-the-quiz-portion-of-this-assignment" class="section level1">

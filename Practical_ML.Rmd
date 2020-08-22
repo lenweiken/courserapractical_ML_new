@@ -10,6 +10,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+### Link to github repo: https://github.com/lenweiken/courserapractical_ML_new
 
 ### The objective, as stated in the instructions of this project assignment, is to predict the manner in which this exercise is carried out ("classe" variable) in the training set. After training the model to predict the classe variable, the prediction model will be applied onto the testing dataset. 
 
