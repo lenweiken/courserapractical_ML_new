@@ -1,7 +1,7 @@
 ---
 title: "Assignment"
 author: "Wei Ken Len"
-date: "8/22/2020"
+date: "22 Aug 2020"
 output: 
   html_document: 
     keep_md: yes
@@ -203,32 +203,32 @@ confusionMatrix(predict_rf, validation$classe)
 ## Prediction    A    B    C    D    E
 ##          A 1395    1    0    0    0
 ##          B    0  948    2    0    0
-##          C    0    0  852    2    1
-##          D    0    0    1  802    2
+##          C    0    0  852    1    0
+##          D    0    0    1  803    3
 ##          E    0    0    0    0  898
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.9982          
-##                  95% CI : (0.9965, 0.9992)
+##                Accuracy : 0.9984          
+##                  95% CI : (0.9968, 0.9993)
 ##     No Information Rate : 0.2845          
 ##     P-Value [Acc > NIR] : < 2.2e-16       
 ##                                           
-##                   Kappa : 0.9977          
+##                   Kappa : 0.9979          
 ##                                           
 ##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            1.0000   0.9989   0.9965   0.9975   0.9967
-## Specificity            0.9997   0.9995   0.9993   0.9993   1.0000
-## Pos Pred Value         0.9993   0.9979   0.9965   0.9963   1.0000
-## Neg Pred Value         1.0000   0.9997   0.9993   0.9995   0.9993
+## Sensitivity            1.0000   0.9989   0.9965   0.9988   0.9967
+## Specificity            0.9997   0.9995   0.9998   0.9990   1.0000
+## Pos Pred Value         0.9993   0.9979   0.9988   0.9950   1.0000
+## Neg Pred Value         1.0000   0.9997   0.9993   0.9998   0.9993
 ## Prevalence             0.2845   0.1935   0.1743   0.1639   0.1837
-## Detection Rate         0.2845   0.1933   0.1737   0.1635   0.1831
-## Detection Prevalence   0.2847   0.1937   0.1743   0.1642   0.1831
-## Balanced Accuracy      0.9999   0.9992   0.9979   0.9984   0.9983
+## Detection Rate         0.2845   0.1933   0.1737   0.1637   0.1831
+## Detection Prevalence   0.2847   0.1937   0.1739   0.1646   0.1831
+## Balanced Accuracy      0.9999   0.9992   0.9981   0.9989   0.9983
 ```
 
 # Step 5. Here, we can see the results of the prediction model, which will be used in the quiz portion of this assignment
