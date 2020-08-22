@@ -103,6 +103,7 @@ training$classe <- as.factor(training$classe)
 ```
 
 # Step 3 - Training the model
+#### We start off with Random Forest model, which is generally a reliable model for classification (which is what's needed in this case). Note that we run into some minor problems with computing speed but we managed to apply a workaround based on Len greski's suggestions (see below)
 ```{r , results='hide', warning=FALSE}
 ## First, we separate training set into two (training & validation) so that we can get an estimate of the out-of-sample error
 
@@ -112,17 +113,18 @@ training2 <- training[ inTrain,]
 
 validation <- training[-inTrain,]
 
-## We then train our model, starting with Random Forest. Our first pass at this yielded unsatisfactory results (long processing times) , primarily due to the bootstrapping method in Random Forest. We apply the suggestions by Len Greski to improve the perforamnce of model training (see below)
+## We then train our model, starting with Random Forest. Our first pass at this yielded unsatisfactory results (long processing times) , primarily due to the bootstrapping method in Random Forest. We apply the suggestions by Len Greski to improve the perforamnce of model training (using cross validation method and parallel processing)
 
 y <- training2[,52] # set up x and y to avoid slowness of caret() with model syntax
 x <- training2[,-52]
 ```
 
+
 ```{r , results='hide', warning=FALSE,cache=TRUE}
 cluster <- makeCluster(detectCores() - 1)  # Parallel processing to quicken training
 registerDoParallel(cluster)
 
-fitControl <- trainControl(method = "cv",
+fitControl <- trainControl(method = "cv", # Cross validation is used
                            number = 5,
                            allowParallel = TRUE)
 
@@ -134,7 +136,7 @@ registerDoSEQ()
 
 
 # Step 4. Apply prediction model to validation dataset to estimate out of sample error
-#### Based on our results below, we find that our accuracy for our validation data is approximately ~99%, which is a sufficient result to proceed with applying the model onto the test dataset in step 5
+#### Based on our results below, we find that our accuracy for our validation data is approximately ~99% (implying our out of sample error is would be very low), which is a sufficient result to proceed with applying the model onto the test dataset in step 5
 ```{r}
 predict_rf <- predict(fit_rf, newdata = validation)
 

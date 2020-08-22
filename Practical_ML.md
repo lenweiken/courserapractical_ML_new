@@ -155,6 +155,7 @@ training$classe <- as.factor(training$classe)
 ```
 
 # Step 3 - Training the model
+#### We start off with Random Forest model, which is generally a reliable model for classification (which is what's needed in this case). Note that we run into some minor problems with computing speed but we managed to apply a workaround based on Len greski's suggestions (see below)
 
 ```r
 ## First, we separate training set into two (training & validation) so that we can get an estimate of the out-of-sample error
@@ -165,18 +166,19 @@ training2 <- training[ inTrain,]
 
 validation <- training[-inTrain,]
 
-## We then train our model, starting with Random Forest. Our first pass at this yielded unsatisfactory results (long processing times) , primarily due to the bootstrapping method in Random Forest. We apply the suggestions by Len Greski to improve the perforamnce of model training (see below)
+## We then train our model, starting with Random Forest. Our first pass at this yielded unsatisfactory results (long processing times) , primarily due to the bootstrapping method in Random Forest. We apply the suggestions by Len Greski to improve the perforamnce of model training (using cross validation method and parallel processing)
 
 y <- training2[,52] # set up x and y to avoid slowness of caret() with model syntax
 x <- training2[,-52]
 ```
 
 
+
 ```r
 cluster <- makeCluster(detectCores() - 1)  # Parallel processing to quicken training
 registerDoParallel(cluster)
 
-fitControl <- trainControl(method = "cv",
+fitControl <- trainControl(method = "cv", # Cross validation is used
                            number = 5,
                            allowParallel = TRUE)
 
@@ -188,7 +190,7 @@ registerDoSEQ()
 
 
 # Step 4. Apply prediction model to validation dataset to estimate out of sample error
-#### Based on our results below, we find that our accuracy for our validation data is approximately ~99%, which is a sufficient result to proceed with applying the model onto the test dataset in step 5
+#### Based on our results below, we find that our accuracy for our validation data is approximately ~99% (implying our out of sample error is would be very low), which is a sufficient result to proceed with applying the model onto the test dataset in step 5
 
 ```r
 predict_rf <- predict(fit_rf, newdata = validation)
@@ -201,34 +203,34 @@ confusionMatrix(predict_rf, validation$classe)
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1395    1    0    0    0
-##          B    0  948    2    0    0
-##          C    0    0  852    1    0
-##          D    0    0    1  803    3
+##          A 1391    7    0    0    0
+##          B    2  941    2    1    0
+##          C    2    1  850    4    0
+##          D    0    0    3  799    3
 ##          E    0    0    0    0  898
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.9984          
-##                  95% CI : (0.9968, 0.9993)
+##                Accuracy : 0.9949          
+##                  95% CI : (0.9925, 0.9967)
 ##     No Information Rate : 0.2845          
 ##     P-Value [Acc > NIR] : < 2.2e-16       
 ##                                           
-##                   Kappa : 0.9979          
+##                   Kappa : 0.9936          
 ##                                           
 ##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            1.0000   0.9989   0.9965   0.9988   0.9967
-## Specificity            0.9997   0.9995   0.9998   0.9990   1.0000
-## Pos Pred Value         0.9993   0.9979   0.9988   0.9950   1.0000
-## Neg Pred Value         1.0000   0.9997   0.9993   0.9998   0.9993
+## Sensitivity            0.9971   0.9916   0.9942   0.9938   0.9967
+## Specificity            0.9980   0.9987   0.9983   0.9985   1.0000
+## Pos Pred Value         0.9950   0.9947   0.9918   0.9925   1.0000
+## Neg Pred Value         0.9989   0.9980   0.9988   0.9988   0.9993
 ## Prevalence             0.2845   0.1935   0.1743   0.1639   0.1837
-## Detection Rate         0.2845   0.1933   0.1737   0.1637   0.1831
-## Detection Prevalence   0.2847   0.1937   0.1739   0.1646   0.1831
-## Balanced Accuracy      0.9999   0.9992   0.9981   0.9989   0.9983
+## Detection Rate         0.2836   0.1919   0.1733   0.1629   0.1831
+## Detection Prevalence   0.2851   0.1929   0.1748   0.1642   0.1831
+## Balanced Accuracy      0.9976   0.9952   0.9962   0.9962   0.9983
 ```
 
 # Step 5. Here, we can see the results of the prediction model, which will be used in the quiz portion of this assignment
