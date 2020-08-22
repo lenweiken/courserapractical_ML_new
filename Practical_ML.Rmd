@@ -148,3 +148,4 @@ print(predict_rf)
 ###### - https://github.com/lgreski/datasciencectacontent/blob/master/markdown/pml-randomForestPerformance.md
 ###### - https://stackoverflow.com/questions/52807921/number-of-missing-values-in-each-column-in-r
 ###### - https://github.com/lgreski/datasciencectacontent/blob/master/markdown/pml-ghPagesSetup.md
+###### - http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har
